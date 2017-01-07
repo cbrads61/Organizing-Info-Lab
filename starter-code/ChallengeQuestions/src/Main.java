@@ -15,7 +15,19 @@ public class Main {
      * @param array An array of integers with at least two values
      * @return An array of integers with two elements, the largest and smallest from the method parameter
      */
-    public static int[] findLargestAndSmallest(int array[]){
+    public static int[] findLargestAndSmallest(int[] array){
+        int highest = array[0];
+        int lowest = array[0];
+
+        for (int i = 1; i < array.length; i++){
+            if (array[i] > highest){
+                highest = array[i];
+            }else if (array[i] < lowest){
+                lowest = array[i];
+            }
+        }
+
+        return new int[]{lowest,highest};
 
     }
 
@@ -31,8 +43,27 @@ public class Main {
      * @param intList A List of integers of any size.
      * @return Sum of the two largest values
      */
-    public static int sumOfTwoLargest(List intList){
+    public static int sumOfTwoLargest(List<Integer> intList){
+        int sum;
+        if (intList.size() == 0){
+            return 0;
+        } else if (intList.size() == 1){
+            return intList.get(0);
+        } else {
+            int highest = intList.get(0);
+            int secondHighest = 0;
 
+            for (int i = 1; i < intList.size(); i++){
+                if (intList.get(i) > highest){
+                    secondHighest = highest;
+                    highest = intList.get(i);
+                }else if (intList.get(i) < highest && intList.get(i) > secondHighest){
+                    secondHighest = intList.get(i);
+                }
+            }
+            sum = highest + secondHighest;
+        }
+        return sum;
     }
 
 
@@ -50,7 +81,17 @@ public class Main {
      * @param intList A List of Integers that may or may not include duplicates
      * @return A List of Integers that doesn't contain duplicates.
      */
+
+
     public static List removeDuplicatesFromList(List intList){
+
+        Set<Integer> set = new LinkedHashSet<Integer>();
+        set.addAll(intList);
+        ArrayList<Integer> newList = new ArrayList<>();
+        newList.addAll(set);
+        return newList;
+
+
 
     }
 
